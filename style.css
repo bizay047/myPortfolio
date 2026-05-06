@@ -1,4 +1,3 @@
-
 /* Color Variables for Light & Dark Mode */
 :root {
     --bg-color: #f9f7f1;
@@ -9,7 +8,7 @@
     --primary-hover: #2563eb;
     --card-bg: #ffffff;
     --card-shadow: 0 4px 6px rgba(0,0,0,0.05), 0 10px 15px rgba(0,0,0,0.03);
-    --border-radius: 12px; /* Slightly sharper corners for modern look */
+    --border-radius: 12px; 
     --transition: all 0.3s ease;
 }
 
@@ -20,15 +19,16 @@ body.dark-mode {
     --text-muted: #94a3b8;
     --primary-color: #60a5fa;
     --primary-hover: #3b82f6;
-    --card-bg: #1e293b; /* This gives the dark blue card look from your image */
+    --card-bg: #1e293b; 
     --card-shadow: 0 4px 6px rgba(0,0,0,0.3), 0 10px 15px rgba(0,0,0,0.2);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
 /* --- Prevents Mobile Zoom-Out Bugs --- */
- body {
+body {
     max-width: 100vw;
-    overflow-x: hidden; /* This is the magic line that stops horizontal scrolling/zooming! */
+    overflow-x: hidden; 
 }
 
 body { background-color: var(--bg-color); color: var(--text-main); transition: var(--transition); line-height: 1.6; }
@@ -38,32 +38,38 @@ h1, h2, h3 { color: var(--text-main); }
 .section-title span { color: var(--primary-color); }
 
 /* Navigation */
-nav { position: fixed; top: 0; width: 100%; background-color: var(--card-bg); box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000; }
+nav { position: fixed; top: 0; width: 100%; background-color: var(--card-bg); box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 1000; transition: var(--transition); }
 .nav-container { 
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    max-width: 95%; /* Widened from 1200px */
+    max-width: 95%; 
     margin: 0 auto; 
-    padding: 1rem 0; /* Pushes the logo and moon icon slightly inward */
+    padding: 1rem 0; 
 }
 
 /* --- Image Logo in Navbar --- */
+.nav-logo-img { height: 60px; width: auto; display: block; transition: var(--transition); }
 
-.nav-logo-img {
-    height: 60px; 
-    width: auto;
-    display: block;
-    transition: var(--transition);
+body:not(.dark-mode) .nav-logo-img { mix-blend-mode: multiply; }
+
+body.dark-mode .nav-logo-img {
+    filter: invert(1) hue-rotate(180deg) brightness(1.2);
+    mix-blend-mode: screen; 
 }
 
+.nav-links { display: flex; list-style: none; gap: 2rem; }
+.nav-links a { text-decoration: none; color: var(--text-main); font-weight: 600; transition: var(--transition); }
+.nav-links a:hover { color: var(--primary-color); }
 
-
-/* Magic Trick: Removes white background in Light Mode */
-body:not(.dark-mode) .nav-logo-img {
-    mix-blend-mode: multiply; 
+/* Buttons & Controls */
+.nav-right-controls { 
+    display: flex !important; 
+    flex-direction: row !important; 
+    align-items: center !important; 
+    gap: 1.5rem !important; 
 }
-/* Restores and Fixes the Moon/Sun Button! */
+
 .theme-btn { 
     background: none; 
     border: none; 
@@ -74,35 +80,16 @@ body:not(.dark-mode) .nav-logo-img {
     align-items: center;
     z-index: 100000;
     margin-right: 1.5rem;
- } /* ⬅️ THIS is the magic line that shifts it left! */
-    /* Mobile Menu Button Container */
-/* Mobile Menu Button Container (Locks buttons in a row with spacing) */
-.nav-right-controls { 
-    display: flex !important; 
-    flex-direction: row !important; /* Forces them onto the same horizontal line */
-    align-items: center !important; /* Keeps them vertically centered with each other */
-    gap: 1.5rem !important; /* Adds that perfect, attractive space between them */
-}
+} 
 
-/* Ensure the buttons themselves don't do anything weird */
 .mobile-btn { 
     background: none; 
     border: none; 
     font-size: 1.5rem; 
     color: var(--text-main); 
     cursor: pointer; 
-    display: none; /* Hidden on desktop, shown on mobile via media query */
+    display: none; 
 }
-/* Magic Trick: Inverts text to white, keeps brackets blue, and removes background in Dark Mode! */
-body.dark-mode .nav-logo-img {
-    filter: invert(1) hue-rotate(180deg) brightness(1.2);
-    mix-blend-mode: screen; 
-}
-
-.nav-links { display: flex; list-style: none; gap: 2rem; }
-.nav-links a { text-decoration: none; color: var(--text-main); font-weight: 600; transition: var(--transition); }
-.nav-links a:hover { color: var(--primary-color); }
-.theme-btn { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-main); }
 
 /* --- FULL PAGE BACKGROUND FIX --- */
 #particle-canvas { 
@@ -126,13 +113,12 @@ body.dark-mode .nav-logo-img {
     padding-top: 80px; 
 }
 
-
 .split-hero { 
     display: flex; 
     align-items: center; 
     justify-content: space-between; 
-    gap: 8rem; /* Pushes the text and image further apart */
-    max-width: 1400px; /* Widened from 1200px to match the navbar */
+    gap: 8rem; 
+    max-width: 1400px; 
     width: 100%; 
     padding: 0 3rem; 
     position: relative; 
@@ -140,81 +126,32 @@ body.dark-mode .nav-logo-img {
 }
 
 /* Left Side Formatting */
-.hero-text-side { 
-    flex: 1.2; 
-    text-align: left; 
-}
-
+.hero-text-side { flex: 1.2; text-align: left; }
 .hero-text-side .greeting { text-align: center; }
 .hero-text-side .name { font-size: 3.5rem; font-weight: 700; margin: 0.5rem 0; line-height: 1.1; text-align: center;}
 .hero-text-side .typing-text { font-size: 1.8rem; color: var(--primary-color); height: 40px; margin-bottom: 1rem; text-align: center; }
-.hero-text-side .summary { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 550px;text-align: center; }
-.hero-text-side .hero-buttons { display: flex; gap: 1rem; justify-content: flex-start;align-items: center; }
+.hero-text-side .summary { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2.5rem; max-width: 550px; text-align: center; }
+.hero-text-side .hero-buttons { display: flex; gap: 1rem; justify-content: flex-start; align-items: center; }
 
 /* Right Side Formatting */
-.hero-visual-side { 
-    flex: 1; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    gap: 2rem; 
-}
-
-/* --- UPDATED Hero Profile Image --- */
+.hero-visual-side { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2rem; }
 .hero-profile-img { 
     width: auto; 
     height: auto;
     max-width: 320px; 
-     
     object-fit: cover; 
-    border-radius: var(--border-radius); /* Changed from 50% for sharp corners */
-    
- 
+    border-radius: var(--border-radius); 
     transition: var(--transition);
 }
 
+.hero-action-buttons { display: flex; gap: 1rem; width: 100%; justify-content: center; }
 
-
-.hero-action-buttons { 
-    display: flex; 
-    gap: 1rem; 
-    width: 100%;
-    justify-content: center;
-}
-
-/* Buttons */
+/* Global Buttons */
 .btn { padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: var(--transition); display: inline-block; cursor: pointer; border: 2px solid transparent; }
 .primary-btn { background-color: var(--primary-color); color: #fff; }
 .primary-btn:hover { background-color: var(--primary-hover); transform: translateY(-2px); }
 .secondary-btn { border-color: var(--primary-color); color: var(--primary-color); }
 .secondary-btn:hover { background-color: var(--primary-color); color: #fff; transform: translateY(-2px); }
-
-/* Layout & Cards */
-.section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
-.bg-alt { background-color: transparent; max-width: 100%; padding-left: 10%; padding-right: 10%;}
-.card { background-color: var(--card-bg); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--card-shadow); transition: var(--transition); }
-.card:hover { transform: translateY(-5px); box-shadow: 0 15px 25px rgba(0,0,0,0.1); }
-
-/* About Section */
-.about-container { 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    gap: 4rem; 
-    flex-wrap: wrap; 
-}
-.about-image img { 
-    width: 100%; 
-    max-width: 320px; 
-    border-radius: var(--border-radius); 
-    box-shadow: var(--card-shadow); 
-    object-fit: cover;
-    border: 4px solid var(--card-bg);
-}
-.about-text { max-width: 600px; }
-.about-text h3 { font-size: 1.5rem; color: var(--primary-color); margin-bottom: 1rem; }
-.about-text p { color: var(--text-muted); margin-bottom: 0.8rem; font-size: 1.05rem; }
-
 
 /* Layout & Cards */
 .section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
@@ -233,7 +170,7 @@ body.dark-mode .nav-logo-img {
 }
 
 .reveal.active {
-    opacity: 1.5;
+    opacity: 1; /* Changed from 1.5 (opacity max is 1) */
     transform: translateY(0); 
 }
 
@@ -249,305 +186,119 @@ body.dark-mode nav.scrolled {
     box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
 }
 
+/* About Section */
+.about-container { display: flex; align-items: center; justify-content: center; gap: 4rem; flex-wrap: wrap; }
+.about-image img { width: 100%; max-width: 320px; border-radius: var(--border-radius); box-shadow: var(--card-shadow); object-fit: cover; border: 4px solid var(--card-bg); }
+.about-text { max-width: 600px; }
+.about-text h3 { font-size: 1.5rem; color: var(--primary-color); margin-bottom: 1rem; }
+.about-text p { color: var(--text-muted); margin-bottom: 0.8rem; font-size: 1.05rem; }
 
 /* Skills Grid */
 .skill-category { margin-bottom: 3rem; }
 
-/* Centered Category Titles with Pill Background & Lines */
-.category-title { 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    margin-bottom: 2.5rem; 
-    width: 100%;
-}
+.category-title { display: flex; align-items: center; justify-content: center; margin-bottom: 2.5rem; width: 100%; }
+.category-title::before, .category-title::after { content: ""; flex: 1; height: 2px; background: var(--primary-color); opacity: 0.3; border-radius: 2px; }
+.category-title span { background: rgba(59, 130, 246, 0.1); color: var(--primary-color); padding: 0.6rem 1.8rem; border-radius: 30px; font-size: 1.2rem; font-weight: 600; margin: 0 1rem; border: 1px solid rgba(59, 130, 246, 0.2); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 
-.category-title::before,
-.category-title::after {
-    content: "";
-    flex: 1; 
-    height: 2px; 
-    background: var(--primary-color); 
-    opacity: 0.3; 
-    border-radius: 2px;
-}
+.skill-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, 150px); justify-content: center; gap: 1.5rem; max-width: 900px; margin: 0 auto; }
 
-.category-title span {
-    background: rgba(59, 130, 246, 0.1); 
-    color: var(--primary-color);
-    padding: 0.6rem 1.8rem;
-    border-radius: 30px; 
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 0 1rem; 
-    border: 1px solid rgba(59, 130, 246, 0.2); 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
-}
-
-/* --- Updated Skills Grid (Perfectly Centered, adds to the right) --- */
-.skill-cards-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, 150px); /* Locks every card to exactly 150px */
-    justify-content: center; /* Centers the entire block of cards on the screen */
-    gap: 1.5rem; 
-    max-width: 900px; 
-    margin: 0 auto; 
-}
-
-.mini-skill-card {
-    background-color: var(--card-bg);
-    width: 100%; /* Fills the 150px grid space perfectly */
-
-    padding: 2rem 1rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--card-shadow);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    transition: var(--transition);
-}
+.mini-skill-card { background-color: var(--card-bg); width: 100%; padding: 2rem 1rem; border-radius: var(--border-radius); box-shadow: var(--card-shadow); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1rem; transition: var(--transition); }
 .mini-skill-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); border-bottom: 3px solid var(--primary-color); }
-/* --- Icons inside the mini-skill-cards --- */
-.mini-skill-card i { 
-    font-size: 3rem; 
-    /* Removed the forced blue color so the brand colors show! */
-    background: var(--bg-alt); /* Gives the circle a soft, neutral background */
-    height: 80px; 
-    width: 80px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    border-radius: 49%; 
-    border: 1px solid rgba(100, 116, 139, 0.2); /* Soft neutral border */
-    margin-bottom: 0.5rem;
-    transition: var(--transition);
+
+/* =========================================
+   THE ULTIMATE CIRCLE LOGO FIX (FOR ALL SKILLS)
+   ========================================= */
+
+/* 1. Force the perfect circle background for BOTH old icons (i) and new images (.icon-circle) */
+.mini-skill-card i,
+.mini-skill-card .icon-circle {
+    background: var(--bg-alt) !important; 
+    height: 80px !important; 
+    width: 80px !important; 
+    display: flex !important; 
+    align-items: center !important; 
+    justify-content: center !important; 
+    border-radius: 50% !important; 
+    border: 1px solid rgba(100, 116, 139, 0.2) !important; 
+    margin: 0 auto 0.5rem auto !important; 
+    transition: var(--transition) !important;
 }
 
-/* Hover effect for the new colored icons */
-.mini-skill-card:hover i {
-    background: var(--card-bg); /* Keeps background clean */
-    transform: scale(1.15); /* Makes the logo pop up instead of turning solid blue */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Adds a 3D shadow effect */
+/* Keep Devicon fonts nice and large */
+.mini-skill-card i {
+    font-size: 3.5rem !important;
 }
-.mini-skill-card span { font-weight: 600; font-size: 1.1rem; }
+
+/* 2. Force the image to shrink and fit perfectly INSIDE the circle */
+.mini-skill-card .icon-circle img {
+    width: 45px !important; 
+    height: 45px !important;
+    object-fit: contain !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+/* 3. The 3D Hover Pop Effect for EVERYTHING */
+.mini-skill-card:hover i,
+.mini-skill-card:hover .icon-circle {
+    background: var(--card-bg) !important; 
+    transform: scale(1.15) !important; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important; 
+}
+
+/* 4. Light Mode Fix (Inverts white images to dark without ruining the circle) */
+body:not(.dark-mode) .mini-skill-card .icon-circle img {
+    filter: invert(1) brightness(0.2) !important; 
+}
 
 /* Education Timeline */
-.timeline {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 0;
-}
-.timeline::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 20px;
-    height: 100%;
-    width: 4px;
-    background: rgba(59, 130, 246, 0.2);
-    border-radius: 2px;
-}
-.timeline-item {
-    position: relative;
-    margin-bottom: 3rem;
-    padding-left: 60px;
-}
-.timeline-dot {
-    position: absolute;
-    top: 20px;
-    left: 12px;
-    width: 20px;
-    height: 20px;
-    background: var(--primary-color);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--primary-color);
-    border: 4px solid var(--bg-color);
-    transition: var(--transition);
-}
-.timeline-item:hover .timeline-dot {
-    transform: scale(1.3);
-    box-shadow: 0 0 20px var(--primary-color);
-}
+.timeline { position: relative; max-width: 800px; margin: 0 auto; padding: 2rem 0; }
+.timeline::before { content: ''; position: absolute; top: 0; left: 20px; height: 100%; width: 4px; background: rgba(59, 130, 246, 0.2); border-radius: 2px; }
+.timeline-item { position: relative; margin-bottom: 3rem; padding-left: 60px; }
+.timeline-dot { position: absolute; top: 20px; left: 12px; width: 20px; height: 20px; background: var(--primary-color); border-radius: 50%; box-shadow: 0 0 10px var(--primary-color); border: 4px solid var(--bg-color); transition: var(--transition); }
+.timeline-item:hover .timeline-dot { transform: scale(1.3); box-shadow: 0 0 20px var(--primary-color); }
 .timeline-content { position: relative; }
-.timeline-date {
-    display: inline-block;
-    padding: 0.3rem 0.8rem;
-    background: rgba(59, 130, 246, 0.1);
-    color: var(--primary-color);
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
+.timeline-date { display: inline-block; padding: 0.3rem 0.8rem; background: rgba(59, 130, 246, 0.1); color: var(--primary-color); border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; }
 .timeline-content h3 { margin-bottom: 0.2rem; font-size: 1.3rem; }
 .timeline-content h4 { color: var(--text-muted); font-weight: 400; margin-bottom: 1rem; font-size: 1rem; }
 .timeline-grade { display: block; margin-top: 1rem; font-weight: 700; color: var(--text-main); }
 
-/* Education Logos */
 .edu-header { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1rem; }
-.edu-logo {
-    width: 90px;
-    height: auto;
-    background-color: #ffffff; 
-    padding: 5px;
-    border-radius: 8px;
-    border: 1px solid var(--text-muted);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+.edu-logo { width: 90px; height: auto; background-color: #ffffff; padding: 5px; border-radius: 8px; border: 1px solid var(--text-muted); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 .edu-text h4 a { color: var(--text-muted); text-decoration: none; transition: var(--transition); }
 .edu-text h4 a:hover { color: var(--primary-color); }
 .edu-text h4 a i { font-size: 0.75rem; margin-left: 4px; }
 
 /* Projects Grid */
 .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;  }
-/* --- Major Projects Layout --- */
-.major-projects-grid {
-    max-width: 280px; /* Stops a single card from stretching across the whole screen */
-    margin: 0 auto; /* Centers the grid */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Makes the cards wider squares */
-   
-}
+.major-projects-grid { max-width: 280px; margin: 0 auto; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 
-/* Make the Major Project Logo Big */
-.project-icon.major-logo {
-    width: 130px; /* Much bigger logo! */
-    height: 130px;
-    margin: 0 auto 1.5rem auto;
-    border-radius: 15px;
-    border: 1px solid var(--text-muted);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: var(--transition);
-}
-
-.project-icon.major-logo a {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background-color: #f09433;
-}
-
-.project-icon.major-logo img {
-    width: 160px; /* Scales the image up to fill the larger logo container */
-    height: 160px;
-    padding: 5px;
-    border-radius: 20px;
-    object-fit: contain;
-    transform: scale(-1.3);
-    transition: var(--transition);
-}
-
+.project-icon.major-logo { width: 130px; height: 130px; margin: 0 auto 1.5rem auto; border-radius: 15px; border: 1px solid var(--text-muted); box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: var(--transition); }
+.project-icon.major-logo a { display: flex; width: 100%; height: 100%; background-color: #f09433; }
+.project-icon.major-logo img { width: 160px; height: 160px; padding: 5px; border-radius: 20px; object-fit: contain; transform: scale(-1.3); transition: var(--transition); }
 
 .project-card { cursor: pointer; text-align: center;}
-.project-icon { 
-    background: rgba(59, 130, 246, 0.1); 
-    height: 60px; 
-    width: 60px; 
-    border-radius: 50%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    font-size: 1.5rem; 
-    color: var(--primary-color); 
-    margin: 0 auto 1rem auto; 
-    border: 1px solid rgba(59, 130, 246, 0.3); 
-}
-/* Makes custom image logos fit perfectly in the project cards */
-.project-icon.custom-logo {
-    background: transparent; /* Removes the blue tint so your logo colors pop */
-    border: none; /* Removes the border for a cleaner look */
-}
-
-.project-icon.custom-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Ensures the whole logo fits without getting cut off */
-    transform: scale(1.3); /* Makes it slightly larger to fill the space nicely */
-}
+.project-icon { background: rgba(59, 130, 246, 0.1); height: 60px; width: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--primary-color); margin: 0 auto 1rem auto; border: 1px solid rgba(59, 130, 246, 0.3); }
+.project-icon.custom-logo { background: transparent; border: none; }
+.project-icon.custom-logo img { width: 100%; height: 100%; object-fit: contain; transform: scale(1.3); }
 .project-card h3 { margin-bottom: 0.5rem; }
 .project-card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
 .learn-more { color: var(--primary-color); font-weight: 600; font-size: 0.9rem; }
 
-/* --- NEW: Currently Learning Section --- */
+/* Currently Learning */
+.learning-container { display: flex; flex-direction: column; gap: 2rem; max-width: 950px; margin: 0 auto; }
+.learning-card { display: flex; flex-direction: column; gap: 0.8rem; text-align: left; }
+.learning-card h3 { color: var(--primary-color); font-size: 1.4rem; line-height: 1.3; }
+.learning-card h4 a { color: var(--text-main); text-decoration: none; font-weight: 600; transition: var(--transition); }
+.learning-card h4 a:hover { color: var(--primary-color); }
+.learning-card .timeline-date { margin-bottom: 0.5rem; display: inline-block; }
 
-.learning-container {
-    display: flex;
-    flex-direction: column; /* Stacks the cards as horizontal rows */
-    gap: 2rem;
-    max-width: 950px; /* Keeps the text lines from getting too wide to read */
-    margin: 0 auto; /* Centers the whole container */
-}
-
-.learning-card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    text-align: left;
-}
-
-.learning-card h3 { 
-    color: var(--primary-color); 
-    font-size: 1.4rem; 
-    line-height: 1.3;
-}
-
-.learning-card h4 a { 
-    color: var(--text-main); 
-    text-decoration: none; 
-    font-weight: 600; 
-    transition: var(--transition);
-}
-
-.learning-card h4 a:hover { 
-    color: var(--primary-color); 
-}
-
-.learning-card .timeline-date { 
-    margin-bottom: 0.5rem; 
-    display: inline-block;
-}
-
-/* --- NEW: Certifications Section --- */
-/* --- Updated Certifications Grid & Pills --- */
-.certifications-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    max-width: 950px;
-    margin: 0 auto;
-}
-
-.certification-card {
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
-/* Flexbox to keep Titles and Coursera/Dates on the same line */
-.card-header-flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap; /* Allows it to stack nicely on mobile */
-    gap: 1rem;
-}
-
-/* The uniform Pill Background for Coursera and Dates */
-.pill-badge {
-    background: rgba(59, 130, 246, 0.1); 
-    color: var(--primary-color);
-    padding: 0.4rem 1.2rem;
-    border-radius: 30px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
-    white-space: nowrap; /* Prevents the text from wrapping */
-    border: 1px solid rgba(59, 130, 246, 0.2);
-}
+/* Certifications */
+.certifications-grid { display: flex; flex-direction: column; gap: 1.5rem; max-width: 950px; margin: 0 auto; }
+.certification-card { text-align: left; display: flex; flex-direction: column; justify-content: center; gap: 0.5rem; }
+.card-header-flex { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.pill-badge { background: rgba(59, 130, 246, 0.1); color: var(--primary-color); padding: 0.4rem 1.2rem; border-radius: 30px; font-size: 0.85rem; font-weight: 600; text-decoration: none; white-space: nowrap; border: 1px solid rgba(59, 130, 246, 0.2); }
 
 /* Contact Section */
 .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem; }
@@ -564,46 +315,12 @@ body.dark-mode nav.scrolled {
 footer { text-align: center; padding: 3rem 2rem; background-color: transparent; border-top: 1px solid var(--text-muted); }
 footer p { color: var(--text-muted); margin-bottom: 1.5rem; }
 footer .social-links { display: flex; justify-content: center; gap: 1.5rem; }
+footer .social-links a { font-size: 1.8rem; transition: var(--transition); background: var(--card-bg); height: 50px; width: 50px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: var(--card-shadow); text-decoration: none; }
+footer .social-links a:hover { transform: scale(1.15) translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+.insta-colored { background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.footer-custom-icon { width: 45px; height: 45px; object-fit: contain; transition: var(--transition); }
+body.dark-mode .footer-custom-icon { filter: invert(1) hue-rotate(180deg) brightness(1.2); }
 
-footer .social-links a { 
-    font-size: 1.8rem; /* Made the icons slightly bigger to match the new look */
-    transition: var(--transition); 
-    background: var(--card-bg); 
-    height: 50px; 
-    width: 50px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    border-radius: 50%; 
-    box-shadow: var(--card-shadow);
-    text-decoration: none;
-}
-
-/* Make them pop up on hover, keeping their true colors */
-footer .social-links a:hover { 
-    transform: scale(1.15) translateY(-5px); 
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-/* The Authentic Instagram Gradient */
-.insta-colored {
-    background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-/* --- Custom Image Icon in Footer --- */
-.footer-custom-icon {
-    width: 45px; /* Matches the size of the other social icons */
-    height: 45px;
-    object-fit: contain; /* Prevents the image from stretching */
-    transition: var(--transition);
-}
-
-/* If your custom logo has black text, this makes it glow white in Dark Mode! */
-body.dark-mode .footer-custom-icon {
-    filter: invert(1) hue-rotate(180deg) brightness(1.2);
-}
 /* Modal */
 .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
 .modal-content { max-width: 600px; width: 90%; position: relative; animation: modalFadeIn 0.3s ease; }
@@ -611,101 +328,28 @@ body.dark-mode .footer-custom-icon {
 .modal-buttons { display: flex; gap: 1rem; margin-top: 2rem; }
 @keyframes modalFadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
-
-
-/* --- MOBILE RESPONSIVE LAYOUT FIXES --- */
 /* --- MOBILE RESPONSIVE LAYOUT FIXES --- */
 @media (max-width: 768px) {
-    /* 1. Fix the Navigation Bar Alignment */
-    .nav-container { 
-        flex-direction: row; 
-        justify-content: space-between; /* Pushes Logo to left, Icons to right! */
-        padding: 15px 1.5rem; /* Gives perfect breathing room on the edges */
-        width: 100%;
-    }
-    
-    .nav-right-controls { 
-        display: flex; 
-        align-items: center; 
-        justify-content: flex-end;
-        gap: 1.5rem; 
-    }
-    
+    .nav-container { flex-direction: row; justify-content: space-between; padding: 15px 1.5rem; width: 100%; }
+    .nav-right-controls { display: flex; align-items: center; justify-content: flex-end; gap: 1.5rem; }
     .mobile-btn { display: flex; align-items: center; justify-content: center; } 
+    .theme-btn { position: static !important; margin: 0 !important; font-size: 1.4rem; }
     
-    .theme-btn { 
-        position: static !important; 
-        margin: 0 !important; 
-        font-size: 1.4rem; 
-    }
-    
-    /* Hide links by default, turn them into a dropdown */
-    .nav-links {
-        display: none; 
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: var(--card-bg);
-        flex-direction: column;
-        padding: 1.5rem 0;
-        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-        text-align: center;
-        gap: 1.5rem;
-    }
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--card-bg); flex-direction: column; padding: 1.5rem 0; box-shadow: 0 10px 15px rgba(0,0,0,0.1); text-align: center; gap: 1.5rem; }
     .nav-links.active { display: grid; }
 
-    /* 2. FIX FULL WIDTH & TEXT OVERFLOW */
-    .split-hero { 
-        flex-direction: column !important; 
-        text-align: center !important; 
-        gap: 2rem !important; 
-        padding: 6rem 5% 2rem 5% !important; /* Uses percentages so it fits perfectly on ANY phone size */
-        width: 100% !important;
-        max-width: 100vw !important;
-        box-sizing: border-box !important;
-    }
-    
-    .hero-text-side { 
-        order: 1 !important; 
-        width: 100% !important; 
-        max-width: 100% !important;
-    } 
-    
+    .split-hero { flex-direction: column !important; text-align: center !important; gap: 2rem !important; padding: 6rem 5% 2rem 5% !important; width: 100% !important; max-width: 100vw !important; box-sizing: border-box !important; }
+    .hero-text-side { order: 1 !important; width: 100% !important; max-width: 100% !important; } 
     .hero-text-side .name { font-size: 2.2rem !important; }
-    
-    .hero-text-side .typing-text { 
-        height: auto !important; 
-        min-height: 40px !important; 
-        margin-bottom: 1.5rem !important; 
-    }
-    
+    .hero-text-side .typing-text { height: auto !important; min-height: 40px !important; margin-bottom: 1.5rem !important; }
     .hero-text-side .summary { margin: 0 auto 1.5rem auto !important; }
     
-    /* 3. STRICT BUTTON STACKING */
-    .hero-buttons { 
-        display: flex !important;
-        flex-direction: column !important; /* Strictly forces them to stack vertically */
-        gap: 1rem !important; 
-        width: 100% !important;
-        padding: 0 !important;
-        margin-top: 1rem !important;
-    }
-    
-    .hero-buttons .btn {
-        width: 100% !important; /* Stretches buttons across the screen */
-        text-align: center !important;
-        margin: 0 !important;
-        box-sizing: border-box !important;
-    }
+    .hero-buttons { display: flex !important; flex-direction: column !important; gap: 1rem !important; width: 100% !important; padding: 0 !important; margin-top: 1rem !important; }
+    .hero-buttons .btn { width: 100% !important; text-align: center !important; margin: 0 !important; box-sizing: border-box !important; }
     
     .hero-visual-side { order: 2; margin-top: 1rem; width: 100%; } 
-    .hero-profile-img { 
-        max-width: 340px !important; /* Increased from 250px to make it much bigger */
-        width: 100% !important; /* Ensures it scales perfectly even on tiny iPhone SE screens */
-    }
+    .hero-profile-img { max-width: 340px !important; width: 100% !important; }
 
-    /* General Layout Fixes */
     .section { padding: 4rem 1.5rem; }
     .bg-alt { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
     .about-container { flex-direction: column; text-align: center; gap: 2rem; }
@@ -714,35 +358,8 @@ body.dark-mode .footer-custom-icon {
     .projects-grid { grid-template-columns: 1fr; } 
     .contact-container { grid-template-columns: 1fr; gap: 2rem; }
     footer { padding: 2rem 1rem; }
-
-    /* =========================================
-   MISSING SCROLL ANIMATION EFFECTS
-   ========================================= */
-
-/* 1. The Fade & Slide Up Effect */
-.reveal {
-    opacity: 0;
-    transform: translateY(40px); 
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
-    will-change: opacity, transform; 
 }
-
-.reveal.active {
-    opacity: 1.5;
-    transform: translateY(0); 
-
-}
-
-/* 2. Frosted Glass Navbar on Scroll */
-nav.scrolled {
-    background-color: rgba(255, 255, 255, 0.85) !important; 
-    backdrop-filter: blur(12px) !important; 
-    -webkit-backdrop-filter: blur(12px) !important;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
-}
-
-body.dark-mode nav.scrolled {
-    background-color: rgba(30, 41, 59, 0.85) !important; 
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
-}
+.mini-skill-card .devicon-vercel-plain,
+.mini-skill-card .devicon-nextjs-plain {
+    color: var(--text-main) !important;
 }
