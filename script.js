@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --- 2. Typewriter Effect (Bulletproofed) ---
-    const words = ["AI & ML Engineer", "Data Analyst", "Computer Science Student"];
+    const words = ["AI & ML Engineer","Developer", "Data Analyst","Web Designer","App Developer", "Computer Science Student"];
     let i = 0, j = 0;
     let isDeleting = false;
     let typeSpeed = 100;
